@@ -1,0 +1,31 @@
+{
+    "name": "alex-kalanis/kw_paths",
+    "description": "Paths for accessing targets in KWCMS",
+    "keywords": [
+        "filesystem",
+        "files",
+        "path",
+        "paths"
+    ],
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "require": {
+        "ext-mbstring": "*",
+        "php": ">=7.2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=7.2"
+    },
+    "suggest": {
+        "alex-kalanis/kw_input": "Inputs put in the same way - basic interfaces"
+    },
+    "autoload": {
+        "psr-4": {
+            "kalanis\\kw_paths\\": "php-src/"
+        }
+    },
+    "scripts": {
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
