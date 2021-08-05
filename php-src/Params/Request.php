@@ -17,6 +17,16 @@ class Request extends AParams
     protected $requestUri = '';
     protected $virtualDir = '';
 
+    /**
+     * @param string $requestUri
+     * @param string|null $virtualDir
+     * @return $this
+     *
+     * virtual dir has following variants:
+     * empty string - cut on start of query string - cut on first possible position
+     * null - cut on end of query string - don't know when cut
+     * something - cut where you find that "prefix"
+     */
     public function setData(string $requestUri, ?string $virtualDir = null): self
     {
         $this->requestUri = $requestUri;
@@ -24,6 +34,13 @@ class Request extends AParams
         return $this;
     }
 
+    /**
+     * @return $this
+     * path is composed from:
+     * statical part - for subdirectory on server
+     * virtual prefix - something to split the string
+     * path and other keys - after splitting to describe what client want
+     */
     public function process(): parent
     {
         list($path, $params) = $this->explodeInput($this->requestUri);
@@ -57,10 +74,17 @@ class Request extends AParams
                 $virtual = null;
             }
         } else {
-            // no rewrite!
-            $statical = $path;
-            $mask = null;
-            $virtual = null;
+            if (is_null($fakeDir)) {
+                // no rewrite!
+                $statical = $path;
+                $mask = null;
+                $virtual = null;
+            } else {
+                // no rewrite!
+                $statical = null;
+                $mask = null;
+                $virtual = $path;
+            }
         }
 
         return [$statical, $mask, $virtual];

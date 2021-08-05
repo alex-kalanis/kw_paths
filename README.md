@@ -1,6 +1,6 @@
 # kw_paths
 
-Define used paths inside the KWCMS tree. Parse them from REQUEST_URI.
+Define used paths inside the KWCMS tree. Parse them from REQUEST_URI or other sources.
 
 ## PHP Installation
 

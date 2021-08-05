@@ -4,7 +4,7 @@ namespace kalanis\kw_paths\Params\Request;
 
 
 use kalanis\kw_input\Interfaces\IEntry;
-use kalanis\kw_input\Interfaces\IInputs;
+use kalanis\kw_input\Interfaces\IVariables;
 use kalanis\kw_paths\Params\Request;
 
 
@@ -17,9 +17,9 @@ use kalanis\kw_paths\Params\Request;
  */
 class Input extends Request
 {
-    public function set(IInputs $inputs, ?string $virtualDir = null): parent
+    public function set(IVariables $inputs, ?string $virtualDir = null): parent
     {
-        $requestUri = $inputs->intoKeyObjectArray($inputs->getIn('REQUEST_URI', [IEntry::SOURCE_SERVER, ] ));
+        $requestUri = $inputs->getInArray('REQUEST_URI', [IEntry::SOURCE_SERVER, ] );
         return $this->setData((string)reset($requestUri), $virtualDir);
     }
 }
