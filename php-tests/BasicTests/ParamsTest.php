@@ -16,6 +16,26 @@ class ParamsTest extends CommonTestClass
         $this->assertEquals(['abc'=>'def','ghi'=>'jkl','mno'=>'pqr',], $params->process()->getParams());
     }
 
+    public function testArrayAccess(): void
+    {
+        $data = new \ArrayObject([
+            'abc'=>'/Sources/Request.php?abc=def&ghi[]=jkl&ghi[]=mno&pqr',
+            'ghi'=>'/web/ms:dfhfdh/l:fdgh/g:/definite/unknown/?abc=def&ghi[]=jkl&ghi[]=mno&pqr&vars=1',
+            'mno'=>'/definite/unknown/?abc=def&ghi[]=jkl&ghi[]=mno&pqr&vars=1&lang=rrr',
+        ]);
+        $params = new Params\Request\ArrayAccess();
+        $params->set($data);
+        $this->assertEquals([
+            'staticalPath' => null, 'virtualPrefix' => null, 'path' => '',
+        ], $params->process()->getParams());
+        $params->set($data, 'ghi');
+        $this->assertEquals([
+            'staticalPath' => '/web/ms:dfhfdh/l:fdgh/g:/definite/unknown/',
+            'virtualPrefix' => null, 'abc'=>'def', 'ghi' => ['jkl', 'mno'],
+            'pqr' => '', 'vars' => '1'
+        ], $params->process()->getParams());
+    }
+
     /**
      * @param string $uri
      * @param string|null $virtualDir
