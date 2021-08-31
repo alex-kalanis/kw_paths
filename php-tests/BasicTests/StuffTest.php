@@ -160,4 +160,28 @@ class StuffTest extends CommonTestClass
             [implode(DIRECTORY_SEPARATOR, ['abc', 'def', '', 'ghi', '']), implode(DIRECTORY_SEPARATOR, ['abc', 'def', '', 'ghi'])], // OS-independent
         ];
     }
+
+    /**
+     * @param string $input
+     * @param string $expected
+     * @dataProvider canonizeProvider
+     */
+    public function testCanonize(string $input, string $expected): void
+    {
+        $this->assertEquals($expected, Stuff::canonize($input));
+    }
+
+    public function canonizeProvider(): array
+    {
+        return [
+            ['abcdefghi', 'abcdefghi'],
+            ['a&0123;bcdef0123ghi', 'a0123bcdef0123ghi'],
+            ['abcde&#123;fghi', 'abcdefghi'],
+            ['abcde&copy;fghi', 'abcdefghi'],
+            ['a^bcd^e$f g hi', 'abcdef_g_hi'],
+            ['abcd^ef hi 0.xxx', 'abcdef_hi_0.xxx'],
+            ['abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789', 'abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrs'],
+            ['abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz.0123456789', 'abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghi.0123456789'],
+        ];
+    }
 }
