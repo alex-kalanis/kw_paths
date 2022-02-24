@@ -42,6 +42,7 @@
     <testsuites>
         <testsuite name="ALL">
             <directory>php-tests/BasicTests</directory>
+            <directory>php-tests/ExtrasTests</directory>
         </testsuite>
     </testsuites>
 </phpunit>
