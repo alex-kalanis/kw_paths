@@ -10,8 +10,5 @@ parameters:
 		- 'php-tests/CommonTestClass.php'
 		- 'php-tests/data/*'
 	bootstrapFiles:
-		- 'php-tests/_autoload.php'
+		- 'php-tests/_phpstan_bootstrap.php'
 	checkGenericClassInNonGenericObjectType: false
-#	ignoreErrors:
-#		# solved by unit tests
-#		- '#Cannot call method [a-zA-Z0-9\\_]+\(\) on kalanis\\kw_storage\\Storage#'

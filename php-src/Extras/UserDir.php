@@ -83,8 +83,8 @@ class UserDir
     /**
      * Set username as base for generating user dir
      * @param string $name
-     * @return UserDir
      * @throws InvalidArgumentException
+     * @return UserDir
      */
     public function setUserName(string $name): self
     {
@@ -245,7 +245,7 @@ class UserDir
         if (!$this->canUseDataDir) {
             return false;
         }
-        if (strlen($this->homeDir) < 3) {
+        if (3 > strlen($this->homeDir)) {
             return false; # urcite se najde i blbec, co bude chtit cistku roota
         }
         $this->removeCycle($this->webRootDir . $this->homeDir . IPaths::DIR_CONF);
@@ -263,7 +263,7 @@ class UserDir
         if (empty($this->homeDir)) {
             throw new PathsException($this->lang->paCannotDetermineUserDir());
         }
-        if (strlen($this->workDir) < 4) {
+        if (4 > strlen($this->workDir)) {
             return false; # urcite se najde i blbec, co bude chtit wipe roota (jeste blbejsi napad, nez jsme doufali) - tudy se odinstalace fakt nedela!
         }
         $this->removeCycle($this->webRootDir . $this->homeDir);
