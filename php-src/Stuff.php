@@ -25,26 +25,42 @@ class Stuff
         return static::arrayToPath(array_filter(array_filter(static::pathToArray($path), ['\kalanis\kw_paths\Stuff', 'notDots'])));
     }
 
-    public static function notDots($content): bool
+    public static function notDots(string $content): bool
     {
         return !in_array($content, ['.', '..']);
     }
 
+    /**
+     * @param string $path
+     * @return string[]
+     */
     public static function pathToArray(string $path): array
     {
         return explode(DIRECTORY_SEPARATOR, $path); // OS dependent
     }
 
+    /**
+     * @param string[] $path
+     * @return string
+     */
     public static function arrayToPath(array $path): string
     {
         return implode(DIRECTORY_SEPARATOR, $path); // OS dependent
     }
 
+    /**
+     * @param string $path
+     * @return string[]
+     */
     public static function linkToArray(string $path): array
     {
         return explode(IPaths::SPLITTER_SLASH, $path); // HTTP dependent
     }
 
+    /**
+     * @param string[] $path
+     * @return string
+     */
     public static function arrayToLink(array $path): string
     {
         return implode(IPaths::SPLITTER_SLASH, $path); // HTTP dependent
@@ -115,8 +131,9 @@ class Stuff
     public static function canonize(string $name, int $maxLen = 127): string
     {
         $fName = preg_replace('/((&[[:alpha:]]{1,6};)|(&#[[:alnum:]]{1,7};))/', '', $name); // remove ascii-escaped chars
-        $fName = preg_replace('/[^[:alnum:]_\s\-\.]/', '', $fName); // remove non-alnum + dots
-        $fName = preg_replace('/[\s]/', '_', $fName); // whitespaces to underscore
+        $fName = preg_replace('/[^[:alnum:]_\s\-\.]/', '', strval($fName)); // remove non-alnum + dots
+        $fName = preg_replace('/[\s]/', '_', strval($fName)); // whitespaces to underscore
+        $fName = strval($fName);
         $ext = static::fileExt($fName);
         $base = static::fileBase($fName);
         $extLen = strlen($ext);

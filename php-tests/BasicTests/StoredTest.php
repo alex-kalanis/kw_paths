@@ -15,6 +15,9 @@ class StoredTest extends CommonTestClass
         $path = new Path();
         $path->setDocumentRoot('/tmp/none');
 
+        $this->assertEmpty(Stored::getPath());
+        $this->assertEmpty(Stored::getOriginalPath());
+
         Stored::init($path);
         $xPath = Stored::getPath();
         $xPath->setPathToSystemRoot('sdfgsdfgt/');

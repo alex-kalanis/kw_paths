@@ -21,14 +21,23 @@ class UserDir
 {
     use TRemoveCycle;
 
+    /** @var string */
     protected $userName = ''; # obtained user's name (when need)
+    /** @var string */
     protected $userPath = ''; # system path to user's home dir
+    /** @var string */
     protected $webRootDir = ''; # system path to web root dir
+    /** @var string */
     protected $workDir = ''; # relative path to user's work dir (from web dir)
+    /** @var string */
     protected $homeDir = ''; # relative path to user's home dir (from web dir)
+    /** @var string */
     protected $realPath = ''; # real path as derived from user path - without added slashes
+    /** @var bool */
     protected $canUseHomeDir = true; # if use sub dirs or is it directly in user's home dir
+    /** @var bool */
     protected $canUseDataDir = true; # if use user dir or is it anywhere else directly from web root
+    /** @var IPATranslations */
     protected $lang = null;
 
     public function __construct(Path $path, ?IPATranslations $lang = null)
@@ -184,8 +193,8 @@ class UserDir
 
     /**
      * Create inner path tree
-     * @return string with inner path
      * @throws PathsException
+     * @return string with inner path
      */
     public function createTree(): string
     {
@@ -208,8 +217,8 @@ class UserDir
 
     /**
      * Remove data in user's work dir
-     * @return bool
      * @throws PathsException
+     * @return bool
      */
     public function wipeWorkDir(): bool
     {
@@ -225,8 +234,8 @@ class UserDir
 
     /**
      * Remove everything in user's special sub dirs
-     * @return bool
      * @throws PathsException
+     * @return bool
      */
     public function wipeConfDirs(): bool
     {
@@ -246,8 +255,8 @@ class UserDir
 
     /**
      * Remove everything in user's home dir and that home dir itself
-     * @return bool
      * @throws PathsException
+     * @return bool
      */
     public function wipeHomeDir(): bool
     {

@@ -20,8 +20,8 @@ trait TRemoveCycle
     protected function removeCycle(string $dirPath): void
     {
         $path = Stuff::removeEndingSlash($dirPath);
-        if (is_dir($path)) {
-            foreach (scandir($path) as $fileName) {
+        if (is_dir($path) && $fileListing = scandir($path)) {
+            foreach ($fileListing as $fileName) {
                 if (is_dir($path . DIRECTORY_SEPARATOR . $fileName)) {
                     if (($fileName != '.') && ($fileName != '..')) {
                         $this->removeCycle($path . DIRECTORY_SEPARATOR . $fileName);
