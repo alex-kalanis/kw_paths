@@ -10,5 +10,5 @@ parameters:
 		- 'php-tests/CommonTestClass.php'
 		- 'php-tests/data/*'
 	bootstrapFiles:
-		- 'php-tests/_phpstan_bootstrap.php'
+		- 'php-tests/_bootstrap.php'
 	checkGenericClassInNonGenericObjectType: false

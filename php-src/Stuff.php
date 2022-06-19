@@ -98,7 +98,7 @@ class Stuff
     public static function fileBase(string $path): string
     {
         $pos = mb_strrpos($path, IPaths::SPLITTER_DOT);
-        return (false !== $pos) && ($pos > 0) ? mb_substr($path, 0, $pos) : $path ;
+        return (false !== $pos) && (0 < $pos) ? mb_substr($path, 0, $pos) : $path ;
     }
 
     /**
@@ -109,7 +109,7 @@ class Stuff
     public static function fileExt(string $path): string
     {
         $pos = mb_strrpos($path, IPaths::SPLITTER_DOT);
-        return ((false !== $pos) && ($pos > 0)) ? mb_substr($path, $pos + 1) : '' ;
+        return ((false !== $pos) && (0 < $pos)) ? mb_substr($path, $pos + 1) : '' ;
     }
 
     /**
