@@ -15,7 +15,7 @@ Define used paths inside the KWCMS tree. Parse them from REQUEST_URI or other so
 ```
 {
     "require": {
-        "alex-kalanis/kw_paths": ">=2.0"
+        "alex-kalanis/kw_paths": ">=2.1"
     }
 }
 ```
