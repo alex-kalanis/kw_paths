@@ -3,6 +3,7 @@
 namespace kalanis\kw_paths;
 
 
+use kalanis\kw_files\FilesException;
 use kalanis\kw_paths\Interfaces\IPaths;
 
 
@@ -19,6 +20,7 @@ class Stuff
      * Do not call realpath() which do the similar thing
      * @param string $path
      * @param string $delimiter
+     * @throws FilesException
      * @return string
      */
     public static function sanitize(string $path, string $delimiter = DIRECTORY_SEPARATOR): string
@@ -34,41 +36,45 @@ class Stuff
     /**
      * @param string $path
      * @param string $delimiter
+     * @throws FilesException
      * @return array<int, string>
      */
     public static function pathToArray(string $path, string $delimiter = DIRECTORY_SEPARATOR): array
     {
-        return explode($delimiter, $path);
+        return Extras\PathTransform::get()->expandName($path, $delimiter);
     }
 
     /**
      * @param string[] $path
      * @param string $delimiter
+     * @throws FilesException
      * @return string
      */
     public static function arrayToPath(array $path, string $delimiter = DIRECTORY_SEPARATOR): string
     {
-        return implode($delimiter, $path);
+        return Extras\PathTransform::get()->compactName($path, $delimiter);
     }
 
     /**
      * @param string $path
      * @param string $delimiter
+     * @throws FilesException
      * @return array<int, string>
      */
     public static function linkToArray(string $path, string $delimiter = IPaths::SPLITTER_SLASH): array
     {
-        return explode($delimiter, $path);
+        return Extras\PathTransform::get()->expandName($path, $delimiter);
     }
 
     /**
      * @param string[] $path
      * @param string $delimiter
+     * @throws FilesException
      * @return string
      */
     public static function arrayToLink(array $path, string $delimiter = IPaths::SPLITTER_SLASH): string
     {
-        return implode($delimiter, $path);
+        return Extras\PathTransform::get()->compactName($path, $delimiter);
     }
 
     /**

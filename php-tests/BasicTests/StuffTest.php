@@ -4,6 +4,7 @@ namespace BasicTests;
 
 
 use CommonTestClass;
+use kalanis\kw_files\FilesException;
 use kalanis\kw_paths\Stuff;
 
 
@@ -12,6 +13,7 @@ class StuffTest extends CommonTestClass
     /**
      * @param string $input
      * @param string $expected
+     * @throws FilesException
      * @dataProvider sanitizeProvider
      */
     public function testSanitize(string $input, string $expected): void
@@ -32,6 +34,7 @@ class StuffTest extends CommonTestClass
     /**
      * @param string $input
      * @param string $expected
+     * @throws FilesException
      * @dataProvider linkProvider
      */
     public function testLink(string $input, string $expected): void
@@ -49,6 +52,7 @@ class StuffTest extends CommonTestClass
     /**
      * @param string $input
      * @param string $expected
+     * @throws FilesException
      * @dataProvider pathProvider
      */
     public function testPath(string $input, string $expected): void

@@ -12,6 +12,6 @@ parameters:
 	bootstrapFiles:
 		- 'php-tests/_bootstrap.php'
 	checkGenericClassInNonGenericObjectType: false
-	ignoreErrors:
-		# known one
-		- '#Parameter \#1 \$separator of function explode expects non-empty-string\, string given\.#'
+#	ignoreErrors:
+#		# known one
+#		- '#Parameter \#1 \$separator of function explode expects non-empty-string\, string given\.#'

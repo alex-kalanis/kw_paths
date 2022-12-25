@@ -5,6 +5,7 @@ namespace ExtrasTests;
 
 use CommonTestClass;
 use InvalidArgumentException;
+use kalanis\kw_files\FilesException;
 use kalanis\kw_paths\Extras\UserDir;
 use kalanis\kw_paths\Path;
 use kalanis\kw_paths\PathsException;
@@ -98,6 +99,9 @@ class UserTest extends CommonTestClass
         ];
     }
 
+    /**
+     * @throws FilesException
+     */
     public function testProcessInvalid(): void
     {
         $lib = $this->getUserDir();
@@ -110,6 +114,7 @@ class UserTest extends CommonTestClass
      * @param bool $fromHomeDir
      * @param bool $useSubDir
      * @param string $resultPath
+     * @throws FilesException
      * @dataProvider processNamesProvider
      */
     public function testProcessNames(string $name, bool $fromHomeDir, bool $useSubDir, string $resultPath): void
@@ -135,6 +140,9 @@ class UserTest extends CommonTestClass
         $this->assertFalse($lib->setUserPath('which:me'));
     }
 
+    /**
+     * @throws PathsException
+     */
     public function testCreateInvalid1(): void
     {
         $lib = $this->getUserDir();
@@ -144,6 +152,10 @@ class UserTest extends CommonTestClass
         @unlink($lib->getWebRootDir() . 'for_test');
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testCreateInvalid2(): void
     {
         $lib = $this->getUserDir();
@@ -155,6 +167,10 @@ class UserTest extends CommonTestClass
         @unlink($lib->getWebRootDir() . 'for_test');
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testCreate(): void
     {
         $lib = $this->getUserDir();
@@ -165,6 +181,10 @@ class UserTest extends CommonTestClass
         $this->assertTrue($lib->wipeHomeDir());
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testWipeWorkDir(): void
     {
         $lib = $this->getUserDir();
@@ -173,6 +193,9 @@ class UserTest extends CommonTestClass
         $this->assertTrue($lib->wipeWorkDir());
     }
 
+    /**
+     * @throws PathsException
+     */
     public function testWipeWorkDirInvalid1(): void
     {
         $lib = $this->getUserDir();
@@ -188,6 +211,10 @@ class UserTest extends CommonTestClass
         $this->assertFalse($lib->wipeWorkDir());
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testWipeConfDir(): void
     {
         $lib = $this->getUserDir();
@@ -196,6 +223,9 @@ class UserTest extends CommonTestClass
         $this->assertTrue($lib->wipeConfDirs());
     }
 
+    /**
+     * @throws PathsException
+     */
     public function testWipeConfDirInvalid1(): void
     {
         $lib = $this->getUserDir();
@@ -203,6 +233,10 @@ class UserTest extends CommonTestClass
         $lib->wipeConfDirs();
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testWipeConfDirInvalid2(): void
     {
         $lib = $this->getUserDir();
@@ -211,6 +245,10 @@ class UserTest extends CommonTestClass
         $this->assertFalse($lib->wipeConfDirs());
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testWipeConfDirInvalid3(): void
     {
         $lib = $this->getUserDir();
@@ -219,6 +257,10 @@ class UserTest extends CommonTestClass
         $this->assertFalse($lib->wipeConfDirs());
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testWipeHomeDir(): void
     {
         $lib = $this->getUserDir();
@@ -227,6 +269,9 @@ class UserTest extends CommonTestClass
         $this->assertTrue($lib->wipeHomeDir());
     }
 
+    /**
+     * @throws PathsException
+     */
     public function testWipeHomeDirInvalid1(): void
     {
         $lib = $this->getUserDir();
@@ -234,6 +279,10 @@ class UserTest extends CommonTestClass
         $lib->wipeHomeDir();
     }
 
+    /**
+     * @throws FilesException
+     * @throws PathsException
+     */
     public function testWipeHomeDirInvalid2(): void
     {
         $lib = $this->getUserDir();

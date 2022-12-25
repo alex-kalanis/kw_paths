@@ -12,6 +12,6 @@ parameters:
 	bootstrapFiles:
 		- 'php-tests/_bootstrap.php'
 	checkGenericClassInNonGenericObjectType: false
-	ignoreErrors:
-		# known one
-		- '#should return array\<int\, string\> but returns array\<int\, string\>\|false\.#'
+#	ignoreErrors:
+#		# known one
+#		- '#should return array\<int\, string\> but returns array\<int\, string\>\|false\.#'
