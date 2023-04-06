@@ -11,6 +11,7 @@ use kalanis\kw_paths\Interfaces\IPaths;
  * @package kalanis\kw_paths\Params
  * Input source is Request Uri in preset variables
  * This one is for accessing content with url rewrite engines
+ * @deprecated since 2023-04-04
  */
 class Request extends AParams
 {

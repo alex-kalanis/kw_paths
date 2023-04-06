@@ -3,26 +3,26 @@
 //// Example bootstrap code for KWCMS
 
 // where is the system?
-$paths = new \kalanis\kw_paths\Path();
-$paths->setDocumentRoot(realpath($_SERVER['DOCUMENT_ROOT']));
-$paths->setPathToSystemRoot('/..');
-\kalanis\kw_paths\Stored::init($paths);
+$systemPaths = new \kalanis\kw_paths\Path();
+$systemPaths->setDocumentRoot(realpath($_SERVER['DOCUMENT_ROOT']));
+$systemPaths->setPathToSystemRoot('/..');
+\kalanis\kw_paths\Stored::init($systemPaths);
 
 // init config
-\kalanis\kw_confs\Config::init(new \kalanis\kw_confs\Loaders\PhpLoader($paths));
+\kalanis\kw_confs\Config::init(new \kalanis\kw_confs\Loaders\PhpLoader($systemPaths));
 \kalanis\kw_confs\Config::load('Core'); // autoload core config
 
 // load virtual parts - if exists
-$virtualDir = \kalanis\kw_confs\Config::get('Core', 'net.virtual_dir', 'dir_from_config/');
-$params = new \kalanis\kw_paths\Params\Request\Server();
-$params->set($virtualDir)->process();
-$paths->setData($params->getParams());
+$routedPaths = new \kalanis\kw_routed_paths\RoutedPath(new \kalanis\kw_routed_paths\Sources\Server(
+    \kalanis\kw_confs\Config::get('Core', 'net.virtual_dir', 'dir_from_config/')
+));
+\kalanis\kw_routed_paths\StoreRouted::init($routedPaths);
 
 // init langs - the similar way like configs, but it's necessary to already have loaded params
 \kalanis\kw_langs\Lang::init(
-    new \kalanis\kw_langs\Loaders\PhpLoader($paths),
+    new \kalanis\kw_langs\Loaders\PhpLoader($systemPaths, $routedPaths),
     \kalanis\kw_langs\Support::fillFromPaths(
-        $paths,
+        $systemPaths,
         \kalanis\kw_confs\Config::get('Core', 'page.default_lang', 'hrk'),
         false
     )
@@ -31,7 +31,7 @@ $paths->setData($params->getParams());
 
 // pass parsed params as external source
 $source = new \kalanis\kw_input\Sources\Basic();
-$source->setCli($argv)->setExternal($params->getParams()); // argv is for params from cli
+$source->setCli($argv)->setExternal($routedPaths->getArray()); // argv is for params from cli
 $inputs = new \kalanis\kw_input\Inputs();
 $inputs->setSource($source)->loadEntries();
 

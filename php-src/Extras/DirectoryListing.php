@@ -7,6 +7,8 @@ namespace kalanis\kw_paths\Extras;
  * Class DirectoryListing
  * @package kalanis\kw_paths\Extras
  * Listing through the directory
+ * @deprecated since 2023-04-04
+ * @see \kalanis\kw_tree\DataSources\Volume
  */
 class DirectoryListing
 {

@@ -13,6 +13,8 @@ use kalanis\kw_paths\Translations;
 /**
  * Class ExtendDir
  * low-level work with extended dirs - which contains other params than just files and sub dirs
+ * @deprecated since 2023-01-01 instead use
+ * @see \kalanis\kw_files\Extended\Processor
  */
 class ExtendDir
 {
@@ -72,6 +74,8 @@ class ExtendDir
      * @param bool $makeExtra
      * @throws PathsException
      * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Extended\Processor::createDir
      */
     public function createDir(string $path, string $name, bool $makeExtra = false): bool
     {
@@ -92,6 +96,8 @@ class ExtendDir
      * @param string $path
      * @throws PathsException
      * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Extended\Processor::makeExtended
      */
     public function makeExtended(string $path): bool
     {
@@ -114,6 +120,8 @@ class ExtendDir
      * @param string $path
      * @throws PathsException
      * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Extended\Processor::removeExtended
      */
     public function removeExtended(string $path): bool
     {
@@ -132,6 +140,8 @@ class ExtendDir
      * @param string $path
      * @throws PathsException
      * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Interfaces\IProcessNodes::isReadable
      */
     public function isReadable(string $path): bool
     {
@@ -145,6 +155,8 @@ class ExtendDir
      * @param string $path
      * @throws PathsException
      * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Interfaces\IProcessNodes::isWritable
      */
     public function isWritable(string $path): bool
     {
@@ -154,11 +166,23 @@ class ExtendDir
         throw new PathsException($this->lang->paCannotWriteIntoDir());
     }
 
+    /**
+     * @param string $path
+     * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Interfaces\IProcessNodes::isFile
+     */
     public function isFile(string $path): bool
     {
         return is_file($path);
     }
 
+    /**
+     * @param string $path
+     * @return bool
+     * @deprecated
+     * @see \kalanis\kw_files\Interfaces\IProcessNodes::isDir
+     */
     public function isDir(string $path): bool
     {
         return is_dir($path);

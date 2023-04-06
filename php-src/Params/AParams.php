@@ -10,6 +10,8 @@ namespace kalanis\kw_paths\Params;
  *
  * It's been meant to set it inside the Inputs/Source/Basic as external one.
  *
+ * @deprecated since 2023-04-04
+ * @see kalanis\kw_routed_paths\Sources\ASource and rest of that separated module
  */
 abstract class AParams
 {

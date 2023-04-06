@@ -14,6 +14,7 @@ use kalanis\kw_paths\Params\Request;
  * Input source is Request Uri in IInputs datasource which provides the path data
  * This one is for accessing with url rewrite engines
  * @codeCoverageIgnore access external variable
+ * @deprecated since 2023-04-04
  */
 class Input extends Request
 {

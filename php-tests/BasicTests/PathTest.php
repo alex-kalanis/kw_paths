@@ -4,8 +4,9 @@ namespace BasicTests;
 
 
 use CommonTestClass;
-use kalanis\kw_paths\KwPath;
+use kalanis\kw_paths\ArrayPath;
 use kalanis\kw_paths\Path;
+use kalanis\kw_paths\PathsException;
 
 
 class PathTest extends CommonTestClass
@@ -27,25 +28,48 @@ class PathTest extends CommonTestClass
         $this->assertEmpty($path->isSingle());
     }
 
-    public function testKwPath(): void
+    /**
+     * @throws PathsException
+     */
+    public function testArrayPath1(): void
     {
-        $path = new KwPath();
-        $path->setPath(implode(DIRECTORY_SEPARATOR, ['', 'abc', '..', 'def.ghi', '.', 'jkl', '', 'mno.pqr']));
+        $path = new ArrayPath();
+        $path->setString(implode(DIRECTORY_SEPARATOR, ['', 'abc', '..', 'def.ghi', '.', 'jkl', '', 'mno.pqr']));
         $this->assertEquals(implode(DIRECTORY_SEPARATOR, ['abc', 'def.ghi', 'jkl', 'mno.pqr']), (string) $path);
         $this->assertEquals('mno.pqr', $path->getFileName());
-        $this->assertEquals(implode(DIRECTORY_SEPARATOR, ['abc', 'def.ghi', 'jkl']), $path->getDirectory());
+        $this->assertEquals(implode(DIRECTORY_SEPARATOR, ['abc', 'def.ghi', 'jkl']), $path->getStringDirectory());
+        $this->assertEquals(implode(DIRECTORY_SEPARATOR, ['abc', 'def.ghi', 'jkl', 'mno.pqr']), $path->getString());
+        $this->assertEquals(['abc', 'def.ghi', 'jkl'], $path->getArrayDirectory());
         $this->assertEquals(['abc', 'def.ghi', 'jkl', 'mno.pqr'], $path->getArray());
+    }
 
-        $path->setPath(implode(DIRECTORY_SEPARATOR,  ['', '.', '..', '.', ''])); // NOPE!
+    /**
+     * @throws PathsException
+     */
+    public function testArrayPath2(): void
+    {
+        $path = new ArrayPath();
+        $path->setArray(['', '.', '..', '.', '']); // content NOPE!
         $this->assertEquals('', (string) $path);
         $this->assertEquals('', $path->getFileName());
-        $this->assertEquals('', $path->getDirectory());
+        $this->assertEquals('', $path->getStringDirectory());
+        $this->assertEquals('', $path->getString());
+        $this->assertEquals([], $path->getArrayDirectory());
         $this->assertEquals([], $path->getArray());
+    }
 
-        $path->setPath('abcdef');
+    /**
+     * @throws PathsException
+     */
+    public function testArrayPath3(): void
+    {
+        $path = new ArrayPath();
+        $path->setString('abcdef');
         $this->assertEquals('abcdef', (string) $path);
         $this->assertEquals('abcdef', $path->getFileName());
-        $this->assertEquals('', $path->getDirectory());
+        $this->assertEquals('', $path->getStringDirectory());
+        $this->assertEquals('abcdef', $path->getString());
+        $this->assertEquals([], $path->getArrayDirectory());
         $this->assertEquals(['abcdef'], $path->getArray());
     }
 }

@@ -27,4 +27,6 @@ interface IPATranslations
     public function paCannotDetermineUserDir(): string;
 
     public function paCannotCreateUserDir(): string;
+
+    public function paNoDirectoryDelimiterSet(): string;
 }

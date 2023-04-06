@@ -29,24 +29,47 @@ class Path
     protected $documentRoot = ''; // document root as set from server
     /** @var string */
     protected $pathToSystemRoot = ''; // because document root could not be every time that dir in which are user data dir
-    /** @var string */
+    /**
+     * @var string
+     * @deprecated since 2023-04-01
+     */
     protected $staticalPath = ''; // in browser the path which stay the same and targets the document root from the outside
-    /** @var string */
+    /**
+     * @var string
+     * @deprecated since 2023-04-01
+     */
     protected $virtualPrefix = ''; // in browser the separation value between static part and virtual one
-    /** @var string */
+    /**
+     * @var string
+     * @deprecated since 2023-04-01
+     */
     protected $user = ''; // user whom content is looked for
-    /** @var string */
+    /**
+     * @var string
+     * @deprecated since 2023-04-01
+     */
     protected $lang = ''; // in which language will be content provided, also affects path
-    /** @var string */
+    /**
+     * @var string
+     * @deprecated since 2023-04-01
+     */
     protected $path = ''; // the rest of path
-    /** @var string */
+    /**
+     * @var string
+     * @deprecated since 2023-04-01
+     */
     protected $module = ''; // basic module which will be used as default one to present the content
-    /** @var bool */
+    /**
+     * @var bool
+     * @deprecated since 2023-04-01
+     */
     protected $isSingle = false; // is module the master of page and should be there another as wrapper?
 
     /**
      * @param array<string, string|int|bool> $params
+     * @throws PathsException
      * @return $this
+     * @deprecated since 2023-04-04
      */
     public function setData(array $params): self
     {
@@ -60,6 +83,11 @@ class Path
         return $this;
     }
 
+    /**
+     * @param string $documentRoot
+     * @throws PathsException
+     * @return $this
+     */
     public function setDocumentRoot(string $documentRoot): self
     {
         $this->documentRoot = Stuff::arrayToPath(Stuff::linkToArray($documentRoot));
@@ -71,6 +99,11 @@ class Path
         return $this->documentRoot;
     }
 
+    /**
+     * @param string $pathToSystemRoot
+     * @throws PathsException
+     * @return $this
+     */
     public function setPathToSystemRoot(string $pathToSystemRoot): self
     {
         $this->pathToSystemRoot = Stuff::arrayToPath(Stuff::linkToArray($pathToSystemRoot));
@@ -82,36 +115,64 @@ class Path
         return $this->pathToSystemRoot;
     }
 
+    /**
+     * @return string
+     * @deprecated since 2023-04-04
+     */
     public function getStaticalPath(): string
     {
         return $this->staticalPath;
     }
 
+    /**
+     * @return string
+     * @deprecated since 2023-04-04
+     */
     public function getVirtualPrefix(): string
     {
         return $this->virtualPrefix;
     }
 
+    /**
+     * @return string
+     * @deprecated since 2023-04-04
+     */
     public function getUser(): string
     {
         return $this->user;
     }
 
+    /**
+     * @return string
+     * @deprecated since 2023-04-04
+     */
     public function getLang(): string
     {
         return $this->lang;
     }
 
+    /**
+     * @return string
+     * @deprecated since 2023-04-04
+     */
     public function getPath(): string
     {
         return $this->path;
     }
 
+    /**
+     * @return string
+     * @deprecated since 2023-04-04
+     */
     public function getModule(): string
     {
         return $this->module;
     }
 
+    /**
+     * @return bool
+     * @deprecated since 2023-04-04
+     */
     public function isSingle(): bool
     {
         return $this->isSingle;

@@ -57,4 +57,9 @@ class Translations implements IPATranslations
     {
         return 'Cannot create user dir!';
     }
+
+    public function paNoDirectoryDelimiterSet(): string
+    {
+        return 'Cannot create user dir!';
+    }
 }

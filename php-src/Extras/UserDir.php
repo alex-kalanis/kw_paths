@@ -17,6 +17,9 @@ use UnexpectedValueException;
 /**
  * Class UserDir
  * low-level work with user dirs
+ * @deprecated since 2023-04-04
+ * @see \kalanis\kw_user_paths\UserDir
+ * @see \kalanis\kw_user_paths\Actions
  */
 class UserDir
 {

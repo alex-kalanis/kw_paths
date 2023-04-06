@@ -11,6 +11,7 @@ use kalanis\kw_paths\Params\Request;
  * @package kalanis\kw_paths\Params\Request
  * Input source is ArrayAccess which provides the path data
  * This one is for accessing with simplified inputs
+ * @deprecated since 2023-04-04
  */
 class ArrayAccess extends Request
 {
