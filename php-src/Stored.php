@@ -22,13 +22,4 @@ class Stored
     {
         return static::$paths;
     }
-
-    /**
-     * @return Path|null
-     * @deprecated since 2023-04-04
-     */
-    public static function getOriginalPath(): ?Path
-    {
-        return static::$paths;
-    }
 }

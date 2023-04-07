@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessingTests;
+namespace ExtrasTests;
 
 
 use CommonTestClass;

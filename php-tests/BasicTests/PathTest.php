@@ -14,18 +14,10 @@ class PathTest extends CommonTestClass
     public function testBasic(): void
     {
         $path = new Path();
-        $path->setData(['user'=>'def','module'=>'jkl','mno'=>'pqr',]);
         $path->setDocumentRoot('/abc/def/ghi/jkl');
         $path->setPathToSystemRoot('../mno/pqr');
         $this->assertEquals(implode(DIRECTORY_SEPARATOR, ['', 'abc', 'def', 'ghi', 'jkl']), $path->getDocumentRoot());
         $this->assertEquals(implode(DIRECTORY_SEPARATOR, ['..', 'mno', 'pqr']), $path->getPathToSystemRoot());
-        $this->assertEmpty($path->getStaticalPath());
-        $this->assertEmpty($path->getVirtualPrefix());
-        $this->assertEquals('def', $path->getUser());
-        $this->assertEmpty($path->getLang());
-        $this->assertEmpty($path->getPath());
-        $this->assertEquals('jkl', $path->getModule());
-        $this->assertEmpty($path->isSingle());
     }
 
     /**

@@ -22,7 +22,7 @@ $routedPaths = new \kalanis\kw_routed_paths\RoutedPath(new \kalanis\kw_routed_pa
 \kalanis\kw_langs\Lang::init(
     new \kalanis\kw_langs\Loaders\PhpLoader($systemPaths, $routedPaths),
     \kalanis\kw_langs\Support::fillFromPaths(
-        $systemPaths,
+        $routedPaths,
         \kalanis\kw_confs\Config::get('Core', 'page.default_lang', 'hrk'),
         false
     )
