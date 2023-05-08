@@ -7,6 +7,8 @@ namespace kalanis\kw_paths;
  * Class ArrayPath
  * @package kalanis\kw_paths
  * Path as an array
+ * Each level (as usually seen as directory) is an extra position in path
+ * The last one is usually the name
  */
 class ArrayPath
 {

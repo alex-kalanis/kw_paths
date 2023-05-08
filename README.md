@@ -8,7 +8,8 @@
 [![License](https://poser.pugx.org/alex-kalanis/kw_paths/license.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_paths)
 [![Code Coverage](https://scrutinizer-ci.com/g/alex-kalanis/kw_paths/badges/coverage.png?b=master&v=1)](https://scrutinizer-ci.com/g/alex-kalanis/kw_paths/?branch=master)
 
-Define used paths inside the KWCMS tree. Parse them from REQUEST_URI or other sources.
+Basic shared actions over paths inside the KWCMS. Some work with paths, use array as path
+and convert it there and back. Just the shared action need elsewhere in project.
 
 ## PHP Installation
 
