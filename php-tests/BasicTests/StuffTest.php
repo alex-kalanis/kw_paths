@@ -188,4 +188,40 @@ class StuffTest extends CommonTestClass
             ['abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz.0123456789', 'abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghi.0123456789'],
         ];
     }
+
+    /**
+     * @param string $in
+     * @param array $expected
+     * @dataProvider paramsArrayProvider
+     */
+    public function testParamsArray(string $in, array $expected): void
+    {
+        $this->assertEquals($expected, Stuff::httpStringIntoArray($in));
+    }
+
+    public function paramsArrayProvider(): array
+    {
+        return [
+            ['foo=bar', ['foo' => 'bar']],
+            ['foo=bar&baz=eab', ['foo' => 'bar', 'baz' => 'eab']],
+        ];
+    }
+
+    /**
+     * @param array $in
+     * @param string $expected
+     * @dataProvider paramsStringProvider
+     */
+    public function testParamsString(array $in, string $expected): void
+    {
+        $this->assertEquals($expected, Stuff::arrayIntoHttpString($in));
+    }
+
+    public function paramsStringProvider(): array
+    {
+        return [
+            [ ['foo' => 'bar'], 'foo=bar' ],
+            [ ['foo' => 'bar', 'baz' => 'eab'], 'foo=bar&baz=eab' ],
+        ];
+    }
 }
