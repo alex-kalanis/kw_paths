@@ -16,8 +16,8 @@
     "require-dev": {
         "shipmonk/composer-dependency-analyser": "^1.4",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "phpstan/phpstan": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": ">=9 <10"
     },
     "suggest": {

@@ -159,7 +159,7 @@ class Stuff
 
     /**
      * @param string $param
-     * @return array<string|int, string|int|float|bool|array<string|int>>
+     * @return array<string|int, string|int|float|bool|array<mixed>>
      */
     public static function httpStringIntoArray(string $param): array
     {
