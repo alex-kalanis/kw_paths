@@ -1,9 +1,9 @@
 <?php
 
-namespace ExtrasTests;
+namespace tests\ExtrasTests;
 
 
-use CommonTestClass;
+use tests\CommonTestClass;
 use kalanis\kw_paths\Extras\PathTransform;
 use kalanis\kw_paths\PathsException;
 

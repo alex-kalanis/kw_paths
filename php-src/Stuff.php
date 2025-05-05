@@ -9,7 +9,7 @@ use kalanis\kw_paths\Interfaces\IPaths;
 /**
  * Class Stuff
  * @package kalanis\kw_paths
- * Stuff helping parsing the paths
+ * Stuff helping to parse the paths
  * Do not use pathinfo(), because has problems with code pages
  */
 class Stuff
